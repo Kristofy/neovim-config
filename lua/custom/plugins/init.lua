@@ -2,4 +2,21 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+	{
+		"zbirenbaum/copilot.lua",
+		config = function()
+			require("copilot").setup()
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+
+		dependencies = {
+			"zbirenbaum/copilot.lua",
+		},
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
+}
