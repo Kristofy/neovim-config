@@ -97,7 +97,12 @@ return {
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				clangd = {},
+				clangd = {
+          cmd = {
+            "clangd",
+            "--offset-encoding=utf-16",
+          }
+        },
 				-- gopls = {},
 				pyright = {},
 				-- rust_analyzer = {},
@@ -132,7 +137,7 @@ return {
 			--
 			--  You can press `g?` for help in this menu.
 			require("mason").setup()
-			local mason_registry = require("mason-registry")
+			-- local mason_registry = require("mason-registry")
 
 			-- You can add other tools here that you want Mason to install
 			-- for you, so that they are available from within Neovim.
@@ -144,9 +149,9 @@ return {
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
-						if mason_registry.is_installed(server_name) then
-							return
-						end
+						-- if mason_registry.is_installed(server_name) then
+						-- 	return
+						-- end
 
 						local server = servers[server_name] or {}
 						-- This handles overriding only values explicitly passed
