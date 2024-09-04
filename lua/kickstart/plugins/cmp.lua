@@ -35,6 +35,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"zbirenbaum/copilot-cmp",
+			"mfussenegger/nvim-jdtls",
 		},
 		config = function()
 			-- See `:help cmp`
@@ -69,27 +70,14 @@ return {
 					--  This will expand snippets if the LSP sent a snippet.
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
-					-- If you prefer more traditional completion keymaps,
-					-- you can uncomment the following lines
-					-- ['<CR>'] = cmp.mapping.confirm { select = true },
-					-- ['<Tab>'] = cmp.mapping.select_next_item(),
-					-- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
 					-- Manually trigger a completion from nvim-cmp.
 					--  Generally you don't need this, because nvim-cmp will display
 					--  completions whenever it has completion options available.
 					--  This is set to <C-.> in the termnial emulator
 					[""] = cmp.mapping.complete({}),
 
-					-- Think of <c-l> as moving to the right of your snippet expansion.
-					--  So if you have a snippet that's like:
-					--  function $name($args)
-					--    $body
-					--  end
-					--
 					-- <c-l> will move you to the right of each of the expansion locations.
 					-- <c-h> is similar, except moving you backwards.
-					-- FIXME: this will not work because I use Ctrl + hjkl for jumping in panes in tmux
 					["<C-l>"] = cmp.mapping(function()
 						if luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
@@ -106,8 +94,8 @@ return {
 				}),
 				sources = {
 					{ name = "copilot" },
-					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "nvim_lsp" },
 					{ name = "path" },
 				},
 			})

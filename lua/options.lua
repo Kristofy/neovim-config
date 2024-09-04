@@ -4,8 +4,8 @@
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
-vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -60,5 +60,16 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Highlight matching
+vim.opt.hlsearch = true
+
+-- Set buffer types by extension
+vim.filetype.add({
+	extension = {
+		vert = "glsl", -- Map *.vert files to 'glsl'
+		frag = "glsl", -- Map *.frag files to 'glsl'
+	},
+})
 
 -- vim: ts=2 sts=2 sw=2 et
